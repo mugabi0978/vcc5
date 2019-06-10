@@ -180,7 +180,17 @@ export default {
   }),
 
   mounted() {
-    this.$refs.callerName.focus()
+    // this.$refs.callerName.focus()
+
+
+    axios.post('/dial', { callerName: this.callerName, callerReason: this.callerReason, audioVideo: this.audioVideo })
+    .then(res => {
+      this.caller = res.data.caller
+      this.otConnect(res.data.apiKey, res.data.caller.sessionId, res.data.caller.token)
+    })
+    .catch(console.log)
+
+
   },
 
   beforeDestroy () {
