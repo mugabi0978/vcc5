@@ -79,7 +79,7 @@
         Agent has put you on hold&hellip;
       </p>
       <p v-if="!agentConnected && !onHold" class="uk-position-center uk-width-1-1 uk-text-center uk-text-lead">
-        Waiting for agent to join&hellip;
+        Waiting for a doctor to join &hellip;
       </p>
 
       <ot-subscriber v-if="agentStream" @error="errorHandler" :stream="agentStream" :session="session" :opts="subscriberOpts"

@@ -6,7 +6,7 @@
           <h1 class="uk-h3 uk-padding-small">Doctor #{{ agentid }}</h1>
         </div>
         <div>
-          <router-link to="/end" class="uk-button uk-button-danger uk-b">Exit</router-link>
+          <router-link to="/enddrsession" class="uk-button uk-button-danger uk-b">Exit</router-link>
         </div>
       </div>
 
