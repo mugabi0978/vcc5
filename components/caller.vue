@@ -20,6 +20,10 @@
     </div>
 
     <div v-if="!caller" class="uk-width-expand uk-position-relative" :class="{ 'uk-background-secondary': onHold }">
+
+    <!-- <div v-if="!caller" class="uk-width-auto uk-padding" :class="{ 'uk-background-secondary': onHold }"> -->
+
+
       <div class="uk-section uk-section-primary uk-preserve-color uk-height-viewport">
         <div class="uk-container uk-container-small">
           <div class="uk-card uk-card-default uk-width-3-4 uk-width-3-5@m uk-align-center">
@@ -74,7 +78,12 @@
       </div>
     </div>
 
+    <!-- <div v-if="caller" class="uk-width-auto uk-padding uk-position-relative" :class="{ 'uk-background-secondary': onHold }"> -->
+
     <div v-if="caller" class="uk-width-expand uk-position-relative" :class="{ 'uk-background-secondary': onHold }">
+
+    <!-- <div v-if="caller" class="uk-width-auto uk-padding uk-background-muted"> -->
+
       <p v-if="onHold" class="uk-position-center uk-width-1-1 uk-text-center uk-text-lead uk-light">
         Agent has put you on hold&hellip;
       </p>
@@ -82,11 +91,34 @@
         Waiting for a doctor to join &hellip;
       </p>
 
-      <ot-subscriber v-if="agentStream" @error="errorHandler" :stream="agentStream" :session="session" :opts="subscriberOpts"
-        class="uk-background-primary uk-width-1-1 uk-height-1-1">
-      </ot-subscriber>
+
+
+      <!-- <self-view :session="session" :agentConnected="agentConnected" :audioVideo="audioVideo"
+        :onHold="onHold" :caller="caller" @error="errorHandler" @endCall="endCallHandler">
+      </self-view> class="uk-background-primary uk-width-1-1 uk-height-1-1" -->
+
+      <!-- <div v-if="caller" class="uk-card uk-card-small uk-card-default"> -->
+
+      <!-- <div class=" uk-position-relative"> -->
+
+        <!-- <ot-publisher :session="session" :opts="publisherOpts" @error="errorEmit" @publisherCreated="handlePublisher"
+          class="uk-width-small uk-height-small">
+        </ot-publisher> -->
+
+        <ot-subscriber v-if="agentStream" @error="errorHandler" :stream="agentStream" :session="session" :opts="subscriberOpts"
+        class="uk-width-medium uk-height-medium uk-position-medium">
+        </ot-subscriber>
+
+
+
+    <!-- </div> -->
+
     </div>
-  </div>
+
+
+
+    </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -118,7 +150,7 @@ function otConnect (apiKey, sessionId, token) {
       errorHandler(err)
       return
     }
-    successHandler('Connected to OpenTok')
+    // successHandler('Connected to OpenTok')
     console.log('Connected to session', sessionId)
   })
   this.session.on('signal:agentConnected', (data) => {

@@ -3,7 +3,7 @@
     <div class="uk-card-header">
       <div uk-grid class="uk-flex-between">
         <div>
-          <h2 class="uk-card-title">Caller #{{ caller.callerId }}</h2>
+          <!-- <h2 class="uk-card-title">Caller #{{ caller.callerId }}</h2> -->
         </div>
         <div>
           <div v-if="!agentConnected && !onHold" class="uk-label uk-label-default">
@@ -27,16 +27,16 @@
         Muted
       </div>
     </div>
-    <div v-if="otPublisher" class="uk-card-footer">
-      <button @click="toggleMute" class="uk-button uk-width-1-1 uk-margin-small-bottom"
+    <!-- <div v-if="otPublisher" class="uk-card-footer"> -->
+      <!-- <button @click="toggleMute" class="uk-button uk-width-1-1 uk-margin-small-bottom"
         :class="[ isMuted ? 'uk-button-primary' : 'uk-button-secondary' ]">
         {{ isMuted ? 'Unmute' : 'Mute'}}
       </button>
       <button @click="endCall"
         class="uk-button uk-width-1-1 uk-margin-small-bottom uk-button-danger">
         End call
-      </button>
-    </div>
+      </button> -->
+    <!-- </div> -->
   </div>
 </template>
 

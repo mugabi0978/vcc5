@@ -527,7 +527,12 @@ app.get('/agent/:id/callers', (req, res, next) => {
   if (a.callerCount() < 3) {
     a.assignPending(1)
   }
-  res.status(200).json({ callers: a.activeCallers() })
+  res.status(200).json({
+
+     callers: a.activeCallers()
+     // callers: Array.from(a.currentCallers.values()).map(c => c.status())
+
+    })
 })
 
 /**
