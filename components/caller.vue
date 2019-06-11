@@ -98,7 +98,6 @@
       </self-view> class="uk-background-primary uk-width-1-1 uk-height-1-1" -->
 
       <!-- <div v-if="caller" class="uk-card uk-card-small uk-card-default"> -->
-
       <!-- <div class=" uk-position-relative"> -->
 
         <!-- <ot-publisher :session="session" :opts="publisherOpts" @error="errorEmit" @publisherCreated="handlePublisher"
@@ -106,7 +105,7 @@
         </ot-publisher> -->
 
         <ot-subscriber v-if="agentStream" @error="errorHandler" :stream="agentStream" :session="session" :opts="subscriberOpts"
-        class="uk-width-medium uk-height-medium uk-position-medium">
+        class="uk-width-1-1 uk-height-1-1 uk-position-relative">
         </ot-subscriber>
 
 
