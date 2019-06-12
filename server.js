@@ -529,8 +529,8 @@ app.get('/agent/:id/callers', (req, res, next) => {
   }
   res.status(200).json({
 
-     // callers: a.activeCallers()
-     callers: Array.from(a.currentCallers.values()).map(c => c.status())
+     callers: a.activeCallers()
+     // callers: Array.from(a.currentCallers.values()).map(c => c.status())
 
     })
 })
