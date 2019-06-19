@@ -222,6 +222,7 @@ export default {
     .catch(console.log)
 
 
+
   },
 
   beforeDestroy () {
@@ -231,6 +232,7 @@ export default {
     }
   },
 
+
   methods: {
     errorHandler,
     successHandler,
@@ -238,6 +240,7 @@ export default {
     endCallHandler,
     onSubmit
   }
+
 
 }
 

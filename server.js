@@ -119,6 +119,45 @@ function Caller (sessionId, token) {
   this.assignedAgent = null
 }
 
+
+function otConnect (apiKey, sessionId, token) {
+  this.session = OT.initSession(apiKey, sessionId)
+  this.session.connect(token, (err) => {
+    if (err) {
+      errorHandler(err)
+      return
+    }
+    // successHandler('Connected to OpenTok')
+    console.log('Connected to session', sessionId)
+  })
+  this.session.on('signal:agentConnected', (data) => {
+    console.log('Agentconnected', data)
+    this.onHold = false
+    this.agentConnected = true
+  })
+  this.session.on('signal:hold', () => {
+    this.onHold = true
+    this.agentConnected = false
+    // this.agentStream = null
+  })
+  this.session.on('signal:unhold', () => {
+    this.onHold = false
+    this.agentConnected = true
+  })
+  this.session.on('signal:endCall', () => {
+    this.endCallHandler()
+  })
+  this.session.on('streamCreated', (event) => {
+    console.log('Stream created', event.stream)
+    this.agentStream = event.stream
+  })
+  this.session.on('streamDestroyed', (event) => {
+    this.agentStream = null
+    this.agentConnected = false
+    console.log('Stream destroyed')
+  })
+}
+
 /**
  * Provides a subset of data used to send status of this caller.
  *
@@ -399,6 +438,13 @@ app.post('/dial', (req, res, next) => {
     .then(token => {
       c.token = token
       callers.set(c.callerId, c)
+
+      // callers.
+      // .then(res => {
+      // c.caller = res.data.caller
+
+      this.otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
+
       return res.status(200).json({
         callerId: c.callerId,
         apiKey: OPENTOK_API_KEY,
@@ -573,6 +619,7 @@ app.post('/ot_callback', (req, res) => {
   switch (req.body.event) {
     case 'connectionCreated':
       handleConnectionCreated(req.body)
+      console.log("Data Connected", req.body)
       break
     case 'connectionDestroyed':
       handleConnectionDestroyed(req.body)
