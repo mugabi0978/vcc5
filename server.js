@@ -44,7 +44,7 @@ let pendingQueue = []
 const OT = new OpenTok(OPENTOK_API_KEY, OPENTOK_API_SECRET)
 
 
-import OTT from '@opentok/client'
+// import OTT from '@opentok/client'
 // import axios from 'axios'
 // import OtSubscriber from './ot-subscriber'
 // import SelfView from './self-view'
@@ -127,8 +127,8 @@ function Caller (sessionId, token) {
 
 
 function otConnect (apiKey, sessionId, token) {
-  this.session = OTT.initSession(apiKey, sessionId)
-  this.session.connect(token, (err) => {
+  const session = OT.initSession(apiKey, sessionId)
+  session.connect(token, (err) => {
     if (err) {
       errorHandler(err)
       return
@@ -136,28 +136,28 @@ function otConnect (apiKey, sessionId, token) {
     // successHandler('Connected to OpenTok')
     console.log('Connected to session', sessionId)
   })
-  this.session.on('signal:agentConnected', (data) => {
+  session.on('signal:agentConnected', (data) => {
     console.log('Agentconnected', data)
     this.onHold = false
     this.agentConnected = true
   })
-  this.session.on('signal:hold', () => {
+  session.on('signal:hold', () => {
     this.onHold = true
     this.agentConnected = false
     // this.agentStream = null
   })
-  this.session.on('signal:unhold', () => {
+  session.on('signal:unhold', () => {
     this.onHold = false
     this.agentConnected = true
   })
-  this.session.on('signal:endCall', () => {
+  session.on('signal:endCall', () => {
     this.endCallHandler()
   })
-  this.session.on('streamCreated', (event) => {
+  session.on('streamCreated', (event) => {
     console.log('Stream created', event.stream)
     this.agentStream = event.stream
   })
-  this.session.on('streamDestroyed', (event) => {
+  session.on('streamDestroyed', (event) => {
     this.agentStream = null
     this.agentConnected = false
     console.log('Stream destroyed')
@@ -449,7 +449,7 @@ app.post('/dial', (req, res, next) => {
       // .then(res => {
       // c.caller = res.data.caller
 
-      otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
+      // otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
 
       return res.status(200).json({
         callerId: c.callerId,
