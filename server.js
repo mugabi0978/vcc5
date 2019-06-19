@@ -445,6 +445,8 @@ app.post('/dial', (req, res, next) => {
       c.token = token
       callers.set(c.callerId, c)
 
+      c.ready = true
+
       // callers.
       // .then(res => {
       // c.caller = res.data.caller
