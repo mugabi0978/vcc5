@@ -443,7 +443,7 @@ app.post('/dial', (req, res, next) => {
       // .then(res => {
       // c.caller = res.data.caller
 
-      this.otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
+      otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
 
       return res.status(200).json({
         callerId: c.callerId,
