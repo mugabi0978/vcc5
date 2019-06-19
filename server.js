@@ -43,6 +43,12 @@ let pendingQueue = []
 // Create instance of `OpenTok` that we will reuse for the rest of the application.
 const OT = new OpenTok(OPENTOK_API_KEY, OPENTOK_API_SECRET)
 
+
+import OTT from '@opentok/client'
+// import axios from 'axios'
+// import OtSubscriber from './ot-subscriber'
+// import SelfView from './self-view'
+
 /**
  * Create a new OpenTok session with the given `mediaMode`.
  *
@@ -121,7 +127,7 @@ function Caller (sessionId, token) {
 
 
 function otConnect (apiKey, sessionId, token) {
-  this.session = OT.initSession(apiKey, sessionId)
+  this.session = OTT.initSession(apiKey, sessionId)
   this.session.connect(token, (err) => {
     if (err) {
       errorHandler(err)
