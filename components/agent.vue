@@ -20,8 +20,8 @@
         </div>
         <div class="uk-card-body">
           <ul class="uk-list">
-            <li>Name: {{ caller.callerName || 'N/A' }}</li>
-            <li>Reason: {{ caller.callerReason || 'N/A' }}</li>
+            <li>CTI ID: {{ caller.callerName || 'N/A' }}</li>
+            <li>Full Name: {{ caller.callerReason || 'N/A' }}</li>
           </ul> 
           <span v-if="caller.agentConnected" class="uk-card-badge uk-label uk-label-success">Live</span>
           <span v-if="caller.onHold" class="uk-card-badge uk-label uk-label-warning">On Hold</span>
