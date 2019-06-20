@@ -19,10 +19,10 @@
           <h3 class="uk-h4">Caller #{{ caller.callerId }}</h3>
         </div>
         <div class="uk-card-body">
-          <!-- <ul class="uk-list">
+          <ul class="uk-list">
             <li>Name: {{ caller.callerName || 'N/A' }}</li>
             <li>Reason: {{ caller.callerReason || 'N/A' }}</li>
-          </ul> -->
+          </ul> 
           <span v-if="caller.agentConnected" class="uk-card-badge uk-label uk-label-success">Live</span>
           <span v-if="caller.onHold" class="uk-card-badge uk-label uk-label-warning">On Hold</span>
           <button
