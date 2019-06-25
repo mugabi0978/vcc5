@@ -178,6 +178,7 @@ Caller.prototype.status = function () {
     connectedSince: this.connectedSince,
     onCallSince: this.onCallSince,
     agentConnected: this.agentConnected,
+    callerCTI_ID: this.callerCTI_ID,
     callerName: this.callerName,
     callerReason: this.callerReason,
     audioVideo: this.audioVideo
