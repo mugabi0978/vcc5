@@ -432,6 +432,7 @@ app.use('/', express.static('./public'))
  */
 app.post('/dial', (req, res, next) => {
   const c = new Caller()
+  c.callerCTI_ID = req.body.callerCTI_ID
   c.callerName = req.body.callerName
   c.callerReason = req.body.callerReason
   c.audioVideo = req.body.audioVideo
@@ -458,9 +459,11 @@ app.post('/dial', (req, res, next) => {
       // otConnect(OPENTOK_API_KEY, c.sessionId, c.token)
 
       return res.status(200).json({
+        
         callerId: c.callerId,
         apiKey: OPENTOK_API_KEY,
         caller: c
+
       })
     })
     .catch(next)
