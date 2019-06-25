@@ -20,9 +20,10 @@
         </div>
         <div class="uk-card-body">
           <ul class="uk-list">
-            <li>CTI ID: {{ caller.callerName || 'N/A' }}</li>
-            <li>Full Name: {{ caller.callerReason || 'N/A' }}</li>
-          </ul> 
+            <li>CTI ID: {{ caller.callerCTI_ID || 'N/A' }}</li>
+            <li>Full Name: {{ caller.callerName || 'N/A' }}</li>
+            <li>Reason: {{ caller.callerReason || 'N/A' }}</li>
+          </ul>
           <span v-if="caller.agentConnected" class="uk-card-badge uk-label uk-label-success">Live</span>
           <span v-if="caller.onHold" class="uk-card-badge uk-label uk-label-warning">On Hold</span>
           <button
@@ -45,12 +46,14 @@
       </div>
     </div>
     <div class="uk-width-expand uk-background-muted">
+
       <ot-subscriber v-if="callerSession && callerStream" @error="errorHandler" :stream="callerStream" :opts="otOpts"
         :session="callerSession" class="uk-width-1-1 uk-height-1-1">
       </ot-subscriber>
       <ot-publisher v-if="callerSession" :session="callerSession" @error="errorHandler" :opts="publisherOpts"
         class="uk-width-small uk-height-small uk-position-medium uk-position-bottom-right">
       </ot-publisher>
+
     </div>
   </div>
 </template>
