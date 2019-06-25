@@ -250,6 +250,7 @@ function Agent (name = 'N/a') {
   // List of callers assigned to this agent
   this.currentCallers = new Map()
   console.log('New Agent connected', this.agentid)
+
 }
 
 /**
