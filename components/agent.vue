@@ -14,7 +14,7 @@
 
       <div v-for="caller in callers" :key="caller.callerId"
         class="uk-card uk-card-default uk-card-hover uk-card-small uk-margin-small-bottom"
-        :class="{ 'uk-card-primary': caller.agentConnected, 'uk-card-secondary': caller.onHold }">
+        :class="{ 'uk-card-primary': caller.agentConnected, 'uk-card-secondary': caller.onHold, 'uk-card-danger': caller.ready }">
         <div class="uk-card-header">
           <h3 class="uk-h4">Caller #{{ caller.callerId }}</h3>
         </div>
@@ -25,11 +25,16 @@
             <li>Reason: {{ caller.callerReason || 'N/A' }}</li>
           </ul>
           <span v-if="caller.agentConnected" class="uk-card-badge uk-label uk-label-success">Live</span>
+           <span v-if="caller.ready" class="uk-card-badge uk-label uk-label-success">Incoming Video Call</span>
           <span v-if="caller.onHold" class="uk-card-badge uk-label uk-label-warning">On Hold</span>
           <button
             @click="joinCall(caller.callerId)"
             v-if="!caller.agentConnected && !caller.onHold"
             class="uk-button uk-button-primary">Accept</button>
+          <button
+            @click="muteCall(caller.callerId)"
+            v-if="!caller.agentConnected && !caller.onHold"
+            class="uk-button uk-button-primary">Mute Call</button>
           <button
             @click="unholdCall(caller.callerId)"
             v-else-if="caller.onHold"
@@ -80,6 +85,10 @@ function errorHandler(err) {
   } else if (typeof err == 'string') {
     UIkit.notification(err, 'danger')
   }
+}
+
+function muteCall(callerId) {
+  
 }
 
 function setupSession(callerId) {
@@ -287,6 +296,7 @@ export default {
   methods: {
     joinCall,
     holdCall,
+    muteCall,
     unholdCall,
     updateCaller,
     deleteCaller,
