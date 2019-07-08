@@ -393,6 +393,12 @@ async function handleConnectionCreated (data) {
     }
     c.ready = true
     console.log('Caller connected', conndata.userId)
+    
+    const playerd = require('play-sound')();
+    playerd.play('./media/google_duo.mp3', (err) => {
+        if (err) console.log(`Could not play sound: ${err}`);
+    });
+    
   }
 }
 
