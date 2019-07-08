@@ -395,7 +395,7 @@ async function handleConnectionCreated (data) {
     console.log('Caller connected', conndata.userId)
     
     const playerd = require('play-sound')();
-    playerd.play('google_duo.mp3', (err) => {
+    var audio1 = playerd.play('google_duo1.mp3', (err) => {
         if (err) console.log(`Could not play sound: ${err}`);
     });
     
@@ -628,6 +628,12 @@ app.post('/agent', (req, res, next) => {
   let a = new Agent(req.body.name || 'N/A')
   a.assignPending(3)
   agents.set(a.agentid, a)
+  
+  const playerd1 = require('play-sound')();
+    var audio11 = playerd1.play('google_duo.mp3', (err) => {
+        if (err) console.log(`Could not play sound: ${err}`);
+    });
+  
   res.status(200).json({
     agentid: a.agentid,
     name: a.name
